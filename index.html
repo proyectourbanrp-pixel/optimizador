@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VYRONIX Optimizer - Sistema de Optimización Avanzado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER MEJORADO -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>⚡ VYRONIX OPTIMIZER</h1>
+                    <p>Sistema Avanzado de Optimización</p>
+                </div>
+                <div class="version">v1.2.0 Pro</div>
+            </div>
+        </header>
+
+        <!-- STATS EN TIEMPO REAL -->
+        <section class="stats-section">
+            <div class="stat-card gradient-blue">
+                <div class="stat-icon">🔷</div>
+                <div class="stat-info">
+                    <h3>CPU</h3>
+                    <p id="cpu" class="stat-value">--%</p>
+                    <div class="stat-bar">
+                        <div id="cpu-bar" class="stat-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card gradient-purple">
+                <div class="stat-icon">💜</div>
+                <div class="stat-info">
+                    <h3>RAM</h3>
+                    <p id="ram" class="stat-value">--%</p>
+                    <div class="stat-bar">
+                        <div id="ram-bar" class="stat-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card gradient-green">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3>ESTADO</h3>
+                    <p id="system-status" class="stat-value">Óptimo</p>
+                    <div class="status-indicator">
+                        <div class="pulse"></div> Monitoreando
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACCIONES PRINCIPALES -->
+        <section class="actions-section">
+            <div class="actions-group">
+                <button class="btn btn-primary" onclick="analizar()">
+                    <span class="btn-icon">🔍</span>
+                    <span class="btn-text">Analizar</span>
+                    <span class="btn-desc">Escanear sistema</span>
+                </button>
+
+                <button class="btn btn-success" onclick="optimizar()">
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Optimizar</span>
+                    <span class="btn-desc">Limpiar RAM</span>
+                </button>
+
+                <button class="btn btn-warning" onclick="optimizarInteligente()">
+                    <span class="btn-icon">🧠</span>
+                    <span class="btn-text">Auto</span>
+                    <span class="btn-desc">Inteligente</span>
+                </button>
+
+                <button class="btn btn-danger" onclick="revertir()">
+                    <span class="btn-icon">♻️</span>
+                    <span class="btn-text">Revertir</span>
+                    <span class="btn-desc">Deshacer cambios</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- TABS DE NAVEGACIÓN -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('procesos')">
+                    🧠 Procesos Activos
+                </button>
+                <button class="tab-btn" onclick="switchTab('drivers')">
+                    🔧 Drivers
+                </button>
+                <button class="tab-btn" onclick="switchTab('logs')">
+                    📋 Eventos
+                </button>
+            </div>
+
+            <!-- TAB PROCESOS -->
+            <div id="tab-procesos" class="tab-content active">
+                <div class="processes-header">
+                    <h2>⚙️ Procesos en Tiempo Real</h2>
+                    <button class="btn-small" onclick="ui.updateProcesses()">🔄 Actualizar</button>
+                </div>
+                <div class="process-container">
+                    <table class="processes-table">
+                        <thead>
+                            <tr>
+                                <th>Proceso</th>
+                                <th>PID</th>
+                                <th class="ram-col">RAM (MB)</th>
+                                <th class="cpu-col">CPU %</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="processTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB DRIVERS -->
+            <div id="tab-drivers" class="tab-content">
+                <div class="drivers-header">
+                    <h2>🔧 Drivers Instalados</h2>
+                    <button class="btn-small" onclick="ui.analizarDrivers()">🔍 Escanear</button>
+                    <button id="update-btn" class="btn-small btn-update" style="display:none;" onclick="ui.actualizarDrivers()">⬇️ Actualizar</button>
+                </div>
+                <div class="drivers-container">
+                    <div id="driversList" class="drivers-list"></div>
+                </div>
+            </div>
+
+            <!-- TAB LOGS -->
+            <div id="tab-logs" class="tab-content">
+                <div class="logs-header">
+                    <h2>📋 Registro de Eventos</h2>
+                    <button class="btn-small" onclick="ui.clearLogs()">🗑️ Limpiar</button>
+                </div>
+                <div class="log" id="log"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts del renderer process -->
+    <script src="renderer-ui.js"></script>
+</body>
+</html>
